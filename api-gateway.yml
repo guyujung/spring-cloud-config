@@ -1,0 +1,106 @@
+token:
+  secret: 16KoQxoXORuacUf3eeIuxYUHP849oUy7hBfwIq/6svBR5e6dvERR47ZBLNbjgxbuY6PT8IO1xARs26q0ACNwfw==
+  
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:8080"
+              - "http://www.co-work.co.kr"
+              - "http://co-work.co.kr"
+              - "https://www.co-work.co.kr"
+              - "https://co-work.co.kr"
+              
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - PUT
+              - GET
+              - POST
+              - DELETE
+              - OPTIONS
+              - PATCH
+
+      routes:
+        #user-service
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/user-service/accounts/**
+          filters:
+            - RemoveRequestHeader=Cookie  #request header? ??
+            - RewritePath=/api/user-service/(?<segment>.*), /$\{segment}
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/user-service/**
+          filters:
+            - RemoveRequestHeader=Cookie  #request header? ??
+            - RewritePath=/api/user-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter     
+        #work-service
+        - id: work-service
+          uri: lb://WORK-SERVICE
+          predicates:
+            - Path=/api/work-service/**
+          filters:
+            - RemoveRequestHeader=Cookie  #request header? ??
+            - RewritePath=/api/work-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+        #dashboard-service
+        - id: dashboard-service
+          uri: lb://DASHBOARD-SERVICE
+          predicates:
+            - Path=/api/dashboard-service/**
+          filters:
+            - RemoveRequestHeader=Cookie  #request header? ??
+            - RewritePath=/api/dashboard-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+        #calendar-service
+        - id: calendar-service
+          uri: lb://CALENDAR-SERVICE
+          predicates:
+            - Path=/api/calendar-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/api/calendar-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+        #board-service
+        - id: board-service
+          uri: lb://BOARD-SERVICE
+          predicates:
+            - Path=/api/board-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/api/board-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
+        #chat-service
+        - id: chat-service
+          uri: lb:ws://CHAT-SERVICE
+          predicates:
+            - Path=/api/ws/**
+          filters:
+            - RewritePath=/api/ws/(?<segment>.*), /$\{segment}
+            - RemoveRequestHeader=Cookie
+            - AuthorizationHeaderFilter
+            - SetResponseHeader=Access-Control-Allow-Origin, *
+        - id: chat-service
+          uri: lb://CHAT-SERVICE
+          predicates:
+            - Path=/api/chat-service/**
+          filters:
+            - RemoveRequestHeader=Cookie  #request header? ??
+            - RewritePath=/api/chat-service/(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter     
+        
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh

@@ -1,0 +1,18 @@
+token:
+  expiration_time: 86400000000
+  secret: 16KoQxoXORuacUf3eeIuxYUHP849oUy7hBfwIq/6svBR5e6dvERR47ZBLNbjgxbuY6PT8IO1xARs26q0ACNwfw==
+
+google:
+  uri: https://accounts.google.com/o/oauth2/v2/auth
+  client-id: 28385138203-ia52sb2vklinuat5uc8q3mm0k3lip2jo.apps.googleusercontent.com
+  client-secret: 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
+  redirect-uri: https://co-work.co.kr/accounts/oauth2/google/callback
+  token-uri: https://oauth2.googleapis.com/token
+  resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
+  scope: https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, busrefresh
