@@ -6,7 +6,7 @@ google:
   uri: https://accounts.google.com/o/oauth2/v2/auth
   client-id: 214486065613-vrm55g6bfn4crcr2llco4uk8usd5blve.apps.googleusercontent.com
   client-secret: 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
-  redirect-uri: http://localhost:8001/api/user-service/accounts/oauth2/google/callback
+  redirect-uri: http://localhost:8080/api/user-service/accounts/oauth2/google/callback
   token-uri: https://oauth2.googleapis.com/token
   resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
   scope: https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
