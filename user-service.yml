@@ -4,9 +4,9 @@ token:
 
 google:
   uri: https://accounts.google.com/o/oauth2/v2/auth
-  client-id: 1093299775877-e4jfjauk2eeokmca4et667ehlltbgjr7.apps.googleusercontent.com
-  client-secret: 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
-  redirect-uri: http://localhost:5001/accounts/oauth2/google/callback
+  client-id: 605194872736-663tmn8tngkgpc98a13rdu8c49kn0avu.apps.googleusercontent.com
+  client-secret: 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
+  redirect-uri: http://localhost:8080/accounts/oauth2/google/callback
   token-uri: https://oauth2.googleapis.com/token
   resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
   scope: https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile
