@@ -31,17 +31,17 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/user-service/accounts/**
+            - Path=/user-service/accounts/**
           filters:
             - RemoveRequestHeader=Cookie  #request header? ??
-            - RewritePath=/api/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/user-service/**
           filters:
             - RemoveRequestHeader=Cookie  #request header? ??
-            - RewritePath=/api/user-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter     
         #work-service
         - id: work-service
@@ -50,7 +50,7 @@ spring:
             - Path=/api/work-service/**
           filters:
             - RemoveRequestHeader=Cookie  #request header? ??
-            - RewritePath=/api/work-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/work-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
         #dashboard-service
         - id: dashboard-service
@@ -59,7 +59,7 @@ spring:
             - Path=/api/dashboard-service/**
           filters:
             - RemoveRequestHeader=Cookie  #request header? ??
-            - RewritePath=/api/dashboard-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/dashboard-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
         #calendar-service
         - id: calendar-service
@@ -68,13 +68,13 @@ spring:
             - Path=/api/calendar-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/api/calendar-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/calendar-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
         #board-service
         - id: board-service
           uri: lb://BOARD-SERVICE
           predicates:
-            - Path=/api/board-service/**
+            - Path=/board-service/**
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/api/board-service/(?<segment>.*), /$\{segment}
@@ -83,7 +83,7 @@ spring:
         - id: chat-service
           uri: lb:ws://CHAT-SERVICE
           predicates:
-            - Path=/api/ws/**
+            - Path=/ws/**
           filters:
             - RewritePath=/api/ws/(?<segment>.*), /$\{segment}
             - RemoveRequestHeader=Cookie
@@ -92,7 +92,7 @@ spring:
         - id: chat-service
           uri: lb://CHAT-SERVICE
           predicates:
-            - Path=/api/chat-service/**
+            - Path=/chat-service/**
           filters:
             - RemoveRequestHeader=Cookie  #request header? ??
             - RewritePath=/api/chat-service/(?<segment>.*), /$\{segment}
