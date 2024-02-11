@@ -4,8 +4,8 @@ token:
 
 google:
   uri: https://accounts.google.com/o/oauth2/v2/auth
-  client-id: 611626563616-im105grrpk5nvtk4p166lp150ojgfr0d.apps.googleusercontent.com
-  client-secret: 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
+  client-id: 611626563616-ehq2ceu26ficj7o1eo9a2cr8g53a0lg2.apps.googleusercontent.com
+  client-secret: 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
   redirect-uri: http://localhost:8080/user-service/accounts/oauth2/google/callback
   token-uri: https://oauth2.googleapis.com/token
   resource-uri: https://www.googleapis.com/oauth2/v2/userinfo
