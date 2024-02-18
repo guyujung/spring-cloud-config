@@ -77,7 +77,7 @@ spring:
             - Path=/board-service/**
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/api/board-service/(?<segment>.*), /$\{segment}
+            - RewritePath=/board-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
         #chat-service
         - id: chat-service
